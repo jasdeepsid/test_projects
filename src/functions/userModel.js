@@ -9,3 +9,15 @@ const userSchema = new mongoose.Schema({
 });
 
 const User = mongoose.model('Users', userSchema);
+
+//Controller functions for user creation object
+exports.createUser = async (firstName, email, password, age) => {
+    try{
+        const user = new User({ firstName, email, password, age });
+        await user.save();
+      } catch(error) {
+        throw new Error('Something went wrong with creating a new user.');
+      }
+};
+
+//not needed: module.exports = {};
